@@ -91,6 +91,22 @@
             border-color: rgba(230, 81, 0, 0.3);
             box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.05);
         }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            display: none;
+            transition: max-height 0.3s ease;
+        }
+        .accordion-item.open .accordion-content {
+            display: block;
+            max-height: 999px;
+        }
+        .accordion-item .material-symbols-outlined {
+            transition: transform 0.3s ease;
+        }
+        .accordion-item.open .material-symbols-outlined {
+            transform: rotate(180deg);
+        }
         .list-marker {
             display: inline-flex;
             align-items: center;
@@ -167,7 +183,7 @@
                         </span>
 <span class="material-symbols-outlined text-outline group-hover:text-brand-orange transition-all duration-300 transform group-hover:rotate-180">expand_more</span>
 </button>
-<div class="px-8 pb-10 pt-0">
+<div class="px-8 pb-10 pt-0 accordion-content">
 <div class="pl-16">
 <p class="text-on-surface-variant leading-relaxed text-lg mb-6">
                                 Akademisk integritet handler om ærlighet, tillit og ansvar i forskning og utdanning. I forbindelse med KI betyr det at du må være åpen om hvordan du har brukt verktøyene, og sikre at det du leverer er et resultat av din egen læringsprosess. 
@@ -192,7 +208,7 @@
                         </span>
 <span class="material-symbols-outlined text-outline group-hover:text-brand-orange transition-all transform group-hover:rotate-180">expand_more</span>
 </button>
-<div class="px-8 pb-10 pt-0">
+<div class="px-8 pb-10 pt-0 accordion-content">
 <div class="pl-16 space-y-4">
 <div class="flex items-start">
 <div class="bullet-marker"></div>
@@ -218,7 +234,7 @@
                         </span>
 <span class="material-symbols-outlined text-outline group-hover:text-brand-orange transition-all transform group-hover:rotate-180">expand_more</span>
 </button>
-<div class="px-8 pb-10 pt-0">
+<div class="px-8 pb-10 pt-0 accordion-content">
 <div class="pl-16">
 <p class="text-on-surface-variant leading-relaxed text-lg mb-6">
                                 Dersom du bruker KI-verktøy til å generere tekst, bilder, kode, utregninger, løsningsforslag eller lignende må du vise til det verktøyet du har brukt. Du må også redegjøre for, og dokumentere, hvordan du brukte verktøyet.
@@ -247,7 +263,7 @@ Siden KI ikke er en forfatter i tradisjonell forstand, men en modell, siteres de
                         </span>
 <span class="material-symbols-outlined text-outline group-hover:text-brand-orange transition-all transform group-hover:rotate-180">expand_more</span>
 </button>
-<div class="px-8 pb-10 pt-0">
+<div class="px-8 pb-10 pt-0 accordion-content">
 <div class="pl-16">
 <p class="text-on-surface-variant leading-relaxed text-lg mb-6">
                                 <strong>Kildekritikk:</strong> Kildekritikk er viktig ved bruk av KI. Akkurat som et søk på nettet kan gi lenker til gammel informasjon, kan KI-verktøy gi informasjon som er utdatert, feilaktig eller også generert uten substansielle kilder (hallusinering).
@@ -291,5 +307,29 @@ Kontakt oss
 
 </footer>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const accordionItems = document.querySelectorAll('.accordion-item');
+    accordionItems.forEach(function (item) {
+      const button = item.querySelector('button');
+      const content = item.querySelector('.accordion-content');
+      if (!button || !content) return;
+      button.setAttribute('aria-expanded', 'false');
+      button.type = 'button';
+      button.addEventListener('click', function () {
+        item.classList.toggle('open');
+        if (item.classList.contains('open')) {
+          content.style.display = 'block';
+          content.style.maxHeight = content.scrollHeight + 'px';
+          button.setAttribute('aria-expanded', 'true');
+        } else {
+          content.style.maxHeight = '0';
+          content.style.display = 'none';
+          button.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  });
+</script>
 
 </body></html>
