@@ -106,6 +106,16 @@
 </button>
 </div>
 
+<div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-blue-50 dark:bg-blue-50 border-t border-stone-200">
+<nav class="flex flex-col gap-4 p-4">
+<a href="index.html" class="text-orange-600 font-semibold">Hjem</a>
+<a href="Personvern.html" class="text-stone-600 hover:text-stone-900 transition-colors">Personvern</a>
+<a href="Tips&Triks.html" class="text-stone-600 hover:text-stone-900 transition-colors">Tips & Triks</a>
+<a href="FAQ.html" class="text-stone-600 hover:text-stone-900 transition-colors">FAQ</a>
+<a href="Om-oss.html" class="text-stone-600 hover:text-stone-900 transition-colors">Om oss</a>
+</nav>
+</div>
+
 <div class="bg-stone-100 dark:bg-stone-900 h-[1px] w-full"></div>
 </header>
 <main class="pt-32 pb-20">
@@ -279,4 +289,13 @@ Kontakt oss
 </div>
 
 </footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuButton = document.querySelector('button.md\\:hidden');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+    });
+});
+</script>
 </body></html>
